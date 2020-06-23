@@ -1,7 +1,9 @@
 <template>
-  <div>
-    {{ node }}
-    <bracket-node v-for="(child, index) in node.children" :key="index" :node="child"></bracket-node>
+  <div class="_row">
+    <div class="_column">{{ duelById(node.item.id) }}</div>
+    <div>
+      <bracket-node v-for="(child, index) in node.children" :key="index" :node="child"></bracket-node>
+    </div>
   </div>
 </template>
 
@@ -13,7 +15,7 @@ import store from "../store/DuelStore";
 export default {
   name: "BracketNode",
   props: {
-    node: Object,
+    node: Object
     //  as PropType<IBracketNode>
   },
   methods: {
@@ -22,8 +24,20 @@ export default {
       return res;
     },
     isSheet: function(node: IBracketNode) {
-        return (node && node.children && node.children.length > 0)
+      return node && node.children && node.children.length > 0;
     }
   }
 };
 </script>
+<style scoped>
+._column {
+  flex-direction: column;
+}
+
+._row {
+  /* flex-direction: row-reverse; */
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1 1 auto;
+}
+</style>

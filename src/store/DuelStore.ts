@@ -9,6 +9,10 @@ export default new Vuex.Store({
   state: {
     // duels: Array<IDuel>()
     duels: [{
+      id: '0',
+      duelScores: Array<IScore>()
+    },
+    {
       id: '1',
       duelScores: Array<IScore>()
     },
