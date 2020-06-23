@@ -1,26 +1,34 @@
 <template>
   <v-app>
-    <v-content>
-      <bracket :bracket='bracket' />
-    </v-content>
+    <v-main>
+      <bracket :bracket="bracket" />
+    </v-main>
   </v-app>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Bracket from './components/Bracket.vue'
-import bracketAPI from '@/api/BracketAPI'
+import Vue from "vue";
+import Bracket from "./components/Bracket.vue";
+import bracketAPI from "@/api/BracketAPI";
 
 export default Vue.extend({
-  name: 'App',
+  name: "App",
   components: {
     Bracket
   },
   data: () => ({
-    bracket: {}
+    bracket: {
+      id: "1",
+      name: "init",
+      editionMode: false,
+      nbTeamMaxByDuel: 2,
+      nbTeamWinner: 1
+    }
   }),
   mounted() {
-    bracketAPI().get('1').then(response => this.bracket = response)
+    bracketAPI()
+      .get("1")
+      .then(response => (this.bracket = response));
   }
 });
 </script>

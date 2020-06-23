@@ -1,6 +1,6 @@
 export interface PlayerModel {
-  id: number;
-  idBDD?: number;
-  name: String;
-  avatar?: string;
+  id: string,
+  idBDD?: string,
+  name: string,
+  avatar?: string,
 }

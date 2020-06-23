@@ -1,4 +1,4 @@
 export default interface IScore {
-    idTeam: string;
-    score: number;
+    idTeam: string,
+    score: number
 }
