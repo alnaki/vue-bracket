@@ -10,7 +10,7 @@
 </template>
 
 <script lang='ts'>
-// import { PropType } from "vue";
+import { PropType } from "vue";
 import IBracketNode from "../models/IBracketNode";
 import Duel from "./Duel.vue";
 import store from "../store/DuelStore";
@@ -18,9 +18,9 @@ import store from "../store/DuelStore";
 export default {
   name: "BracketNode",
   props: {
-    node: Object,
-    isFather: Boolean
-    //  as PropType<IBracketNode>
+    node: {
+      type: Object as PropType<IBracketNode>
+    }
   },
   components: {
     Duel
