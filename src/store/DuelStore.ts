@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import IDuel from '@/models/IDuel'
-import IScore from '@/models/IScore'
 
 Vue.use(Vuex)
 
@@ -10,39 +9,116 @@ export default new Vuex.Store({
     // duels: Array<IDuel>()
     duels: [{
       id: '0',
-      duelScores: Array<IScore>()
+      duelScores: [
+        {
+          idTeam: '1',
+          score: 5
+        },
+        {
+          idTeam: '2',
+          score: 5
+        }
+      ]
     },
     {
       id: '1',
-      duelScores: Array<IScore>()
+      duelScores: [
+        {
+          idTeam: '1',
+          score: 5
+        },
+        {
+          idTeam: '2',
+          score: 5
+        }
+      ]
     },
     {
       id: '2',
-      duelScores: Array<IScore>()
+      duelScores: [
+        {
+          idTeam: '1',
+          score: 5
+        },
+        {
+          idTeam: '2',
+          score: 5
+        }
+      ]
     },
     {
       id: '3',
-      duelScores: Array<IScore>()
+      duelScores: [
+        {
+          idTeam: '1',
+          score: 5
+        },
+        {
+          idTeam: '2',
+          score: 5
+        }
+      ]
     },
     {
       id: '4',
-      duelScores: Array<IScore>()
+      duelScores: [
+        {
+          idTeam: '1',
+          score: 5
+        },
+        {
+          idTeam: '2',
+          score: 5
+        }
+      ]
     },
     {
       id: '5',
-      duelScores: Array<IScore>()
+      duelScores: [
+        {
+          idTeam: '1',
+          score: 5
+        },
+        {
+          idTeam: '2',
+          score: 5
+        }
+      ]
     },
     {
       id: '6',
-      duelScores: Array<IScore>()
+      duelScores: [
+        {
+          idTeam: '1',
+          score: 5
+        },
+        {
+          idTeam: '2',
+          score: 5
+        }
+      ]
     },
     {
       id: '7',
-      duelScores: Array<IScore>()
+      duelScores: [
+        {
+          idTeam: '1',
+          score: 5
+        },
+        {
+          idTeam: '2',
+          score: 5
+        }
+      ]
     },
     {
       id: '8',
-      duelScores: Array<IScore>()
+      duelScores: [
+        {
+          idTeam: '1',
+          score: 5
+        }
+      ]
     }]
   },
   mutations: {

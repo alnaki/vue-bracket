@@ -32,3 +32,9 @@ export default Vue.extend({
   }
 });
 </script>
+
+<style>
+.v-main__wrap {
+  flex: initial !important;
+}
+</style>

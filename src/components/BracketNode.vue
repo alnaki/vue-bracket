@@ -1,43 +1,47 @@
 <template>
-  <div class="_row">
-    <div class="_column">{{ duelById(node.item.id) }}</div>
+  <v-row>
+    <div class="_column">
+      <duel :duel="duelById(node.item.id)" />
+    </div>
     <div>
       <bracket-node v-for="(child, index) in node.children" :key="index" :node="child"></bracket-node>
     </div>
-  </div>
+  </v-row>
 </template>
 
 <script lang='ts'>
 // import { PropType } from "vue";
 import IBracketNode from "../models/IBracketNode";
+import Duel from "./Duel.vue";
 import store from "../store/DuelStore";
 
 export default {
   name: "BracketNode",
   props: {
-    node: Object
+    node: Object,
+    isFather: Boolean
     //  as PropType<IBracketNode>
+  },
+  components: {
+    Duel
   },
   methods: {
     duelById: function(id: string) {
       const res = store.getters.getDuelById(id);
       return res;
-    },
-    isSheet: function(node: IBracketNode) {
-      return node && node.children && node.children.length > 0;
     }
   }
 };
 </script>
 <style scoped>
 ._column {
-  flex-direction: column;
+  position: relative;
+  margin-left: 50px;
+  display: flex;
+  align-items: center;
 }
 
-._row {
-  /* flex-direction: row-reverse; */
-  display: flex;
-  flex-wrap: wrap;
-  flex: 1 1 auto;
+.row {
+  flex-direction: row-reverse;
 }
 </style>

@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <v-container fluid>
+  <v-container fluid>
       <bracket-node v-if="bracket.bracketNode" :node="bracket.bracketNode"></bracket-node>
-    </v-container>
-  </div>
+  </v-container>
 </template>
 
 <script lang="ts">
