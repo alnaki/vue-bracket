@@ -75,6 +75,9 @@ export default new Vuex.Store({
   actions: {
   },
   getters: {
+    getAll: (state) => () => {
+      return state.teams
+    },
     getTeamById: (state) => (id: string) => {
       return state.teams.find(team => team.id === id)
     }

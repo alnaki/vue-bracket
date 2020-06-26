@@ -10,30 +10,26 @@
         </v-list-item-avatar>
 
         <v-list-item-content>
-          <v-list-item-title>John Leider</v-list-item-title>
+          <v-list-item-title>Team list</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
 
       <v-divider></v-divider>
 
-      <v-list dense>
-        <v-list-item v-for="item in items" :key="item.title" link>
-          <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-icon>
+        <team-list></team-list>
 
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
+
     </v-navigation-drawer>
   </v-sheet>
 </template>
 
 <script>
+import TeamList from './TeamList.vue'
 export default {
   name: "TeamDrawer",
+  components: {
+      TeamList
+  },
   data() {
     return {
       drawer: null,
