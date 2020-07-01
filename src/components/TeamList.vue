@@ -1,24 +1,56 @@
 <template>
-  <v-list disabled>
-    <v-list-item-group color="primary">
-      <v-list-item v-for="(item, i) in teams" :key="i">
-        <v-list-item-icon>
-          <v-icon v-text="item.id"></v-icon>
-        </v-list-item-icon>
-        <v-list-item-content>
-          <v-list-item-title v-text="item.name"></v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-    </v-list-item-group>
-  </v-list>
+  <draggable :list="teams" group="{ name:'team', pull: 'clone', put: false }" >
+    <div v-for="team in teams" :key="team.id">
+      <team :team="team" class="px-2"></team>
+    </div>
+  </draggable>
 </template>
-<script lang="ts">
+<script>
+import draggable from "vuedraggable";
+import Team from "./Team.vue";
 import store from "../store/TeamStore";
 
 export default {
   name: "TeamList",
-  data: () => ({
-    teams: store.getters.getAll()
-  })
+  components: {
+    draggable,
+    Team
+  },
+  data() {
+    return {
+      list1: [
+        { name: "John", id: 1 },
+        { name: "Joao", id: 2 },
+        { name: "Jean", id: 3 },
+        { name: "Gerard", id: 4 }
+      ]
+    };
+  },
+  computed: {
+    teams: {
+      get() {
+        return store.getters.getAll();
+      },
+      set(value) {
+        return store.commit("updateTeams", value);
+      }
+    }
+  },
+  methods: {
+    add: function() {
+      this.list.push({ name: "Juan" });
+    },
+    replace: function() {
+      this.list = [{ name: "Edgard" }];
+    },
+    clone: function(el) {
+      return {
+        name: el.name + " cloned"
+      };
+    },
+    log: function(evt) {
+      window.console.log(evt);
+    }
+  }
 };
 </script>

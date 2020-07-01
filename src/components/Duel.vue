@@ -1,28 +1,40 @@
 <template>
-  <v-card max-width="344" class="mx-auto">
-    <div v-for="(score, index) in duel.duelScores" :key="index">
-      <v-list-item>
-        <v-list-item-avatar color="grey"></v-list-item-avatar>
-        <v-list-item-content>
-          <v-list-item-title class="headline">{{ score.idTeam }}</v-list-item-title>
-          <v-list-item-subtitle>{{ score.score }}</v-list-item-subtitle>
-        </v-list-item-content>
-      </v-list-item>
-    </div>
+  <v-card max-width="344" class="mx-auto duel">
+    <draggable :list="duel.duelScores" group="team">
+      <div v-for="(score, index) in duel.duelScores" :key="index">
+        <team :team="teamById(score.idTeam)"></team>
+      </div>
+    </draggable>
   </v-card>
 </template>
 
-<script lang="ts">
-import { PropType } from "vue";
-import IDuel from "../models/IDuel";
+<script>
+import Team from "./Team.vue";
+import store from "@/store/TeamStore";
+import draggable from "vuedraggable";
+
 
 export default {
   name: "Duel",
+  components: {
+    Team,
+    draggable
+  },
   props: {
     duel: {
-      type: Object as PropType<IDuel>,
+      type: Object,
       required: true
+    }
+  },
+  methods: {
+    teamById: function(id) {
+      return store.getters.getTeamById(id);
     }
   }
 };
 </script>
+<style>
+.duel {
+  margin: 10px;
+}
+</style>

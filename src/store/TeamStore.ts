@@ -70,9 +70,15 @@ export default new Vuex.Store({
     },
     deleteTeam: (state) => (id: string) => {
       return state.teams.filter(team => team.id != id)
+    },
+    updateTeams: (state, payload) => {
+      state.teams = payload;
     }
   },
   actions: {
+    updateTeams: ({ commit }, payload) => {
+      commit("updateTeams", payload);
+    }
   },
   getters: {
     getAll: (state) => () => {

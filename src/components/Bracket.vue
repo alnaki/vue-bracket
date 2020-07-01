@@ -2,6 +2,7 @@
   <v-container fluid>
     <team-drawer>
       <bracket-node v-if="bracket.bracketNode" :node="bracket.bracketNode"></bracket-node>
+      <!-- todo: Make round here with v-for -->
     </team-drawer>
   </v-container>
 </template>
