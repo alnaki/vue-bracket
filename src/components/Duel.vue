@@ -1,10 +1,11 @@
 <template>
   <v-card max-width="344" class="mx-auto duel">
-    <draggable :list="duel.duelScores" group="team">
-      <div v-for="(score, index) in duel.duelScores" :key="index">
+    <draggable :list="duel.duelScores" group="team" @change="log">
+      <div v-for="score in duel.duelScores" :key="score.idTeam">
         <team :team="teamById(score.idTeam)"></team>
       </div>
     </draggable>
+    <div>{{ error }}</div>
   </v-card>
 </template>
 
@@ -12,7 +13,6 @@
 import Team from "./Team.vue";
 import store from "@/store/TeamStore";
 import draggable from "vuedraggable";
-
 
 export default {
   name: "Duel",
@@ -29,6 +29,20 @@ export default {
   methods: {
     teamById: function(id) {
       return store.getters.getTeamById(id);
+    },
+    log: evt => {
+      window.console.log(evt);
+    }
+  },
+  computed: {
+    error() {
+      console.log(this.duel);
+      if (this.duel == undefined || this.duel.duelScores.length <= 0)
+        return "Duel without players";
+      if (this.duel.duelScores.length == 1)
+        return "Duel need more than one player";
+      // todo: Add if nb player > nbMax
+      return null;
     }
   }
 };

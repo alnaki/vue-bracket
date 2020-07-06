@@ -2,13 +2,7 @@
   <v-sheet class="overflow-hidden" style="position: relative;">
     <v-btn color="pink" dark @click.stop="drawer = !drawer">Toggle</v-btn>
     <slot></slot>
-    <v-navigation-drawer
-      :mini-variant.sync="mini"
-      v-model="drawer"
-      absolute
-      temporary
-      expand-on-hover
-    >
+    <v-navigation-drawer v-model="drawer" absolute temporary expand-on-hover>
       <v-list-item class="px-2">
         <v-list-item-avatar>
           <v-img src="https://randomuser.me/api/portraits/men/78.jpg"></v-img>
@@ -20,7 +14,7 @@
       </v-list-item>
 
       <v-divider></v-divider>
-      <team-list></team-list>
+      <team-list v-on:drawer="clik()"></team-list>
     </v-navigation-drawer>
   </v-sheet>
 </template>
@@ -40,6 +34,11 @@ export default {
         { title: "About", icon: "question_answer" }
       ]
     };
+  },
+  methods: {
+    clik() {
+      this.drawer = false;
+    }
   }
 };
 </script>

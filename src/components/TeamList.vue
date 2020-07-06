@@ -1,5 +1,11 @@
 <template>
-  <draggable :list="teams" group="{ name:'team', pull: 'clone', put: false }" >
+  <draggable
+    :list="teams"
+    :group="{name:'team', pull:'clone'}"
+    :clone="cloneTeam"
+    @start="closeDrawer()"
+    @change="log"
+  >
     <div v-for="team in teams" :key="team.id">
       <team :team="team" class="px-2"></team>
     </div>
@@ -16,16 +22,6 @@ export default {
     draggable,
     Team
   },
-  data() {
-    return {
-      list1: [
-        { name: "John", id: 1 },
-        { name: "Joao", id: 2 },
-        { name: "Jean", id: 3 },
-        { name: "Gerard", id: 4 }
-      ]
-    };
-  },
   computed: {
     teams: {
       get() {
@@ -37,18 +33,27 @@ export default {
     }
   },
   methods: {
-    add: function() {
+    closeDrawer() {
+      this.$emit("drawer");
+    },
+    cloneTeam({ id }) {
+      return {
+        idTeam: id,
+        score: 0
+       };
+    },
+    add: () => {
       this.list.push({ name: "Juan" });
     },
-    replace: function() {
+    replace: () => {
       this.list = [{ name: "Edgard" }];
     },
-    clone: function(el) {
+    clone: el => {
       return {
         name: el.name + " cloned"
       };
     },
-    log: function(evt) {
+    log: evt => {
       window.console.log(evt);
     }
   }
