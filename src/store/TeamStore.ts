@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { ITeam } from '@/models/ITeam'
+import ITeam from '@/models/ITeam'
 
 Vue.use(Vuex)
 

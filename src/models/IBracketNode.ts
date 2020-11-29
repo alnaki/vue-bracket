@@ -1,5 +1,11 @@
 export default interface IBracketNode {
-  id: number,
   item: Object,
   children: Array<IBracketNode>
+}
+
+export class BracketNode implements IBracketNode {
+  constructor(
+    public item: Object,
+    public children: Array<IBracketNode>
+  ) { }
 }
