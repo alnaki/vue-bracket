@@ -1,10 +1,16 @@
 <template>
-  <v-row>
+  <v-row no-gutters=true>
     <div class="_column">
+      <v-btn color="primary" elevation="2" icon @click.stop="newChild">
+        <v-icon>mdi-table-column-plus-after</v-icon>
+      </v-btn>
       <duel :duel="duelById(node.item.id)" />
     </div>
     <div>
       <bracket-node v-for="(child, index) in node.children" :key="index" :node="child"></bracket-node>
+    </div>
+    <div @empty-child="true">
+      <bracket-node :node="null"></bracket-node>
     </div>
   </v-row>
 </template>
@@ -19,7 +25,7 @@ export default {
   name: "BracketNode",
   props: {
     node: {
-      type: Object as PropType<IBracketNode>
+      type: Object as PropType<IBracketNode>,
     }
   },
   components: {
@@ -36,7 +42,6 @@ export default {
 <style scoped>
 ._column {
   position: relative;
-  margin-left: 50px;
   display: flex;
   align-items: center;
 }

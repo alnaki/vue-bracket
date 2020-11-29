@@ -1,5 +1,5 @@
 <template>
-  <v-card max-width="344" class="mx-auto duel">
+  <v-card width="200" class="mx-auto duel">
     <draggable :list="duel.duelScores" group="team" @change="log">
       <div v-for="score in duel.duelScores" :key="score.idTeam">
         <team :team="teamById(score.idTeam)"></team>
@@ -43,6 +43,13 @@ export default {
         return "Duel need more than one player";
       // todo: Add if nb player > nbMax
       return null;
+    },
+    // make an empty child in modification if players >2
+    emptyChild() {
+      return this.$emit(
+        "emptyChild",
+        this.duel == undefined || this.duel.duelScores <= 2 ? false : true
+      );
     }
   }
 };

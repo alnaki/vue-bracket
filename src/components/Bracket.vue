@@ -8,27 +8,34 @@
 </template>
 
 <script lang="ts">
-import { PropType } from "vue";
 import BracketNode from "./BracketNode.vue";
 import TeamDrawer from "./TeamDrawer.vue";
 import IBracket from "@/models/IBracket";
 
-export default {
-  name: "Bracket",
-  components: {
-    BracketNode,
-    TeamDrawer
-  },
-  props: {
-    bracket: {
-      type: Object as PropType<IBracket>,
-      required: true
-    }
-  },
-  data() {
-    return {
-      drawer: null,
+import { Prop } from "vue-property-decorator";
+import Vue from "vue";
+import Component from "vue-class-component";
+
+@Component({ components: { BracketNode, TeamDrawer } })
+export default class Bracket extends Vue {
+  @Prop() bracket: IBracket;
+  hightlightTeamId = -1;
+
+  constructor() {
+    super();
+    this.bracket = {
+      id: "0",
+      name: "tournament",
+      fathersNode: [],
+      bracketNode: null,
+      editionMode: false,
+      nbTeamMaxByDuel: 2,
+      nbTeamWinner: 1
     };
   }
-};
+
+  public highlightTeam(id: number): void {
+    this.hightlightTeamId = id;
+  }
+}
 </script>
